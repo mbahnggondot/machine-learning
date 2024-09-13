@@ -1,0 +1,95 @@
+
+1. **Bagaimana Pola Penggunaan Sepeda Berdasarkan Waktu dalam Satu Hari?**
+2. **Bagaimana Pengaruh Faktor Cuaca terhadap Jumlah Penyewaan Sepeda?**
+
+### 1. **Menjawab Pertanyaan Pertama: Pola Penggunaan Sepeda Berdasarkan Waktu dalam Satu Hari**
+
+Gunakan dataset `hour_df` untuk melihat bagaimana penggunaan sepeda berubah berdasarkan waktu dalam satu hari.
+
+#### a. Analisis Deskriptif
+
+1. **Kelompokkan Data Berdasarkan Jam (`hr`)**:
+   Hitung jumlah rata-rata penyewaan sepeda untuk setiap jam dalam satu hari.
+
+2. **Visualisasikan Data**:
+   Visualisasikan pola penggunaan sepeda berdasarkan waktu menggunakan grafik garis atau bar chart.
+
+#### b. Kode untuk Menjawab Pertanyaan Pertama
+
+```python
+# Menghitung rata-rata jumlah penyewaan per jam
+average_hourly_usage = hour_df.groupby('hr')['cnt'].mean()
+
+# Visualisasi pola penggunaan sepeda berdasarkan waktu dalam satu hari
+plt.figure(figsize=(12, 6))
+sns.lineplot(x=average_hourly_usage.index, y=average_hourly_usage.values, marker='o')
+plt.title('Rata-Rata Penggunaan Sepeda Berdasarkan Waktu dalam Satu Hari')
+plt.xlabel('Jam')
+plt.ylabel('Rata-Rata Jumlah Penyewaan')
+plt.xticks(range(0, 24))
+plt.grid(True)
+plt.show()
+
+# Kesimpulan Pola Penggunaan
+peak_hours = average_hourly_usage.idxmax()
+print(f"Jam dengan penggunaan sepeda tertinggi: {peak_hours}:00")
+```
+
+#### c. Interpretasi Hasil
+
+- **Pola Penggunaan**: Identifikasi jam-jam puncak (misalnya, jam 8 pagi dan 5 sore) dan jam-jam sepi (misalnya, larut malam) dalam penggunaan sepeda.
+- **Insight Bisnis**: Temukan pola yang dapat memberikan informasi bagi pengelola layanan sepeda untuk mengatur ketersediaan sepeda atau mengelola jalur distribusi sepeda di sekitar waktu-waktu tertentu.
+
+### 2. **Menjawab Pertanyaan Kedua: Pengaruh Faktor Cuaca terhadap Jumlah Penyewaan Sepeda**
+
+Gunakan dataset `day_df` untuk menganalisis pengaruh kondisi cuaca terhadap jumlah penyewaan sepeda.
+
+#### a. Analisis Deskriptif
+
+1. **Kelompokkan Data Berdasarkan Kondisi Cuaca (`weathersit`)**:
+   Hitung rata-rata jumlah penyewaan sepeda untuk setiap kondisi cuaca.
+
+2. **Visualisasikan Data**:
+   Gunakan boxplot atau bar chart untuk menunjukkan distribusi jumlah penyewaan sepeda berdasarkan kondisi cuaca.
+
+#### b. Kode untuk Menjawab Pertanyaan Kedua
+
+```python
+# Menghitung rata-rata jumlah penyewaan per kondisi cuaca
+average_usage_weather = day_df.groupby('weathersit')['cnt'].mean()
+
+# Visualisasi pengaruh faktor cuaca terhadap jumlah penyewaan sepeda
+plt.figure(figsize=(10, 6))
+sns.barplot(x=average_usage_weather.index, y=average_usage_weather.values)
+plt.title('Rata-Rata Jumlah Penyewaan Sepeda Berdasarkan Kondisi Cuaca')
+plt.xlabel('Kondisi Cuaca')
+plt.ylabel('Rata-Rata Jumlah Penyewaan')
+plt.xticks([0, 1, 2, 3], ['Clear', 'Mist', 'Light Snow/Rain', 'Heavy Rain/Snow'])
+plt.show()
+
+# Kesimpulan Pengaruh Cuaca
+most_rentals_weather = average_usage_weather.idxmax()
+print(f"Kondisi cuaca dengan jumlah penyewaan tertinggi: {most_rentals_weather}")
+```
+
+#### c. Interpretasi Hasil
+
+- **Pengaruh Cuaca**: Identifikasi bagaimana kondisi cuaca yang berbeda (seperti cerah, kabut, atau hujan lebat) mempengaruhi jumlah penyewaan sepeda.
+- **Insight Bisnis**: Temukan strategi operasional seperti menyesuaikan jumlah sepeda yang tersedia berdasarkan prakiraan cuaca atau mengembangkan promosi khusus pada hari-hari tertentu.
+
+### 3. **Kesimpulan dan Rekomendasi Bisnis**
+
+Setelah menjawab kedua pertanyaan bisnis, langkah selanjutnya adalah merumuskan kesimpulan yang jelas dan memberikan rekomendasi berdasarkan temuan analisis. Contoh kesimpulan dan rekomendasi:
+
+- **Kesimpulan Umum**: Mengidentifikasi jam puncak untuk penggunaan sepeda dan mengonfirmasi pengaruh signifikan dari kondisi cuaca terhadap jumlah penyewaan.
+- **Rekomendasi Operasional**:
+  - Meningkatkan ketersediaan sepeda selama jam-jam sibuk.
+  - Mengoptimalkan penempatan sepeda di stasiun berdasarkan pola penggunaan.
+  - Mengembangkan strategi pemasaran atau promosi berdasarkan cuaca (misalnya, diskon pada hari cerah).
+
+### Ringkasan
+
+- Gunakan visualisasi data untuk menjawab setiap pertanyaan bisnis secara terperinci.
+- Interpretasi hasil dan hubungkan dengan tujuan bisnis untuk memberikan insight yang berguna.
+- Berikan rekomendasi berbasis data kepada pengambil keputusan.
+

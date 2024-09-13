@@ -1,0 +1,36 @@
+
+1. **Memilih Dataset dan Memahami Data**:
+   - Pilih salah satu dari tiga dataset yang telah Anda sebutkan (Bike Sharing Dataset, E-Commerce Public Dataset, atau Air Quality Dataset).
+   - Eksplorasi data awal untuk memahami struktur dataset, jenis data, dan informasi yang tersedia.
+
+2. **Praproses Data**:
+   - **Pembersihan Data**: Identifikasi dan tangani data yang hilang, duplikat, atau tidak konsisten.
+   - **Transformasi Data**: Lakukan normalisasi, encoding kategori, dan perubahan format yang diperlukan untuk analisis.
+
+3. **Analisis Eksplorasi Data (EDA)**:
+   - **Visualisasi**: Buat grafik dan visualisasi untuk memahami pola dan distribusi data. Misalnya, histogram, scatter plot, box plot, dan heatmap.
+   - **Statistik Deskriptif**: Hitung ukuran statistik dasar seperti rata-rata, median, deviasi standar, dan lainnya untuk mendapatkan gambaran umum tentang data.
+
+4. **Menjawab Pertanyaan Bisnis**:
+   - **Pola Penggunaan Sepeda Berdasarkan Waktu dalam Satu Hari**:
+     - Analisis pola temporal, seperti penggunaan sepeda berdasarkan jam atau waktu dalam sehari.
+     - Buat visualisasi yang menunjukkan pergeseran atau pola penggunaan sepanjang hari.
+   - **Pengaruh Faktor Cuaca terhadap Jumlah Penyewaan Sepeda**:
+     - Investigasi bagaimana faktor cuaca seperti suhu, kelembaban, dan kondisi cuaca mempengaruhi jumlah penyewaan sepeda.
+     - Visualisasikan hubungan antara faktor cuaca dan jumlah penyewaan menggunakan grafik scatter plot atau grafik lainnya.
+
+5. **Pembangunan Model (Jika Diperlukan)**:
+   - **Model Prediksi**: Jika proyek Anda memerlukan, bangun model prediksi untuk memprediksi jumlah penyewaan berdasarkan variabel cuaca atau waktu.
+   - **Evaluasi Model**: Gunakan metrik evaluasi seperti RMSE, MAE, atau akurasi untuk menilai performa model.
+
+6. **Membuat Dashboard dengan Streamlit**:
+   - **Desain Dashboard**: Rancang antarmuka pengguna untuk dashboard yang menyajikan hasil analisis dan visualisasi data.
+   - **Implementasi**: Gunakan Streamlit untuk membangun dan mengimplementasikan dashboard interaktif.
+   - **Fungsionalitas**: Tambahkan fitur interaktif seperti filter, dropdown, dan slider untuk eksplorasi data yang lebih mendalam.
+
+7. **Dokumentasi dan Pelaporan**:
+   - **Notebook**: Buat notebook yang rapi dan terstruktur dengan penjelasan tentang kode, analisis, dan visualisasi.
+   - **Laporan**: Susun laporan akhir yang mencakup temuan, visualisasi, dan rekomendasi berdasarkan analisis data.
+
+8. **Presentasi**:
+   - **Persiapkan Presentasi**: Jika Anda perlu mempresentasikan proyek Anda, persiapkan slide atau materi presentasi yang ringkas dan jelas.

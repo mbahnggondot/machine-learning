@@ -1,0 +1,125 @@
+
+### Langkah-Langkah Visualisasi Data
+
+1. **Visualisasi Pola Penggunaan Sepeda Berdasarkan Waktu dalam Satu Hari**
+2. **Visualisasi Pengaruh Faktor Cuaca terhadap Jumlah Penyewaan Sepeda**
+3. **Visualisasi Tambahan (Opsional)** seperti korelasi antar fitur, distribusi fitur numerik, dsb.
+
+### 1. **Visualisasi Pola Penggunaan Sepeda Berdasarkan Waktu dalam Satu Hari**
+
+Gunakan dataset `hour_df` untuk visualisasi ini, karena dataset ini memiliki data penggunaan sepeda per jam.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Visualisasi pola penggunaan sepeda berdasarkan waktu dalam satu hari
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=hour_df, x='hr', y='cnt', marker='o')
+plt.title('Pola Penggunaan Sepeda Berdasarkan Waktu dalam Satu Hari')
+plt.xlabel('Jam')
+plt.ylabel('Jumlah Penyewaan')
+plt.xticks(range(0, 24))  # Mengatur label x untuk menunjukkan setiap jam
+plt.grid(True)
+plt.show()
+```
+
+### 2. **Visualisasi Pengaruh Faktor Cuaca terhadap Jumlah Penyewaan Sepeda**
+
+Gunakan dataset `day_df` untuk visualisasi ini, karena memiliki data yang merangkum penggunaan sepeda per hari dan faktor cuaca.
+
+```python
+# Visualisasi pengaruh faktor cuaca terhadap jumlah penyewaan sepeda
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=day_df, x='weathersit', y='cnt')
+plt.title('Pengaruh Faktor Cuaca terhadap Jumlah Penyewaan Sepeda')
+plt.xlabel('Kondisi Cuaca')
+plt.ylabel('Jumlah Penyewaan')
+plt.xticks([0, 1, 2, 3], ['Clear', 'Mist', 'Light Snow/Rain', 'Heavy Rain/Snow'])
+plt.show()
+```
+
+### 3. **Visualisasi Tambahan (Opsional)**
+
+#### a. **Heatmap Korelasi Antar Fitur**
+Visualisasi ini menunjukkan korelasi antara berbagai fitur dalam dataset untuk memahami hubungan antar variabel.
+
+```python
+# Heatmap korelasi untuk dataset day_df
+plt.figure(figsize=(10, 8))
+sns.heatmap(day_df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Matriks Korelasi Fitur dalam day_df')
+plt.show()
+```
+
+#### b. **Distribusi Jumlah Penyewaan**
+Untuk melihat distribusi jumlah penyewaan sepeda, Anda dapat menggunakan histogram.
+
+```python
+# Histogram distribusi jumlah penyewaan sepeda
+plt.figure(figsize=(8, 6))
+sns.histplot(day_df['cnt'], bins=20, kde=True)
+plt.title('Distribusi Jumlah Penyewaan Sepeda')
+plt.xlabel('Jumlah Penyewaan')
+plt.ylabel('Frekuensi')
+plt.show()
+```
+
+### 4. **Visualisasi Lanjutan (Opsional)**
+
+- **Scatter Plot**: Untuk menganalisis hubungan antara dua variabel numerik, misalnya, suhu dan jumlah penyewaan.
+
+```python
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=day_df, x='temp', y='cnt')
+plt.title('Hubungan antara Suhu dan Jumlah Penyewaan Sepeda')
+plt.xlabel('Suhu (Normalized)')
+plt.ylabel('Jumlah Penyewaan')
+plt.show()
+```
+
+### Penjelasan Visualisasi
+
+- **`sns.lineplot`**: Digunakan untuk menunjukkan pola penggunaan sepeda sepanjang hari.
+- **`sns.boxplot`**: Digunakan untuk melihat bagaimana jumlah penyewaan sepeda bervariasi berdasarkan kondisi cuaca.
+- **`sns.heatmap`**: Menampilkan korelasi antara variabel, membantu dalam menemukan variabel yang mungkin mempengaruhi hasil.
+- **`sns.histplot`**: Menunjukkan distribusi data untuk memahami pola umum dalam dataset.
+
+### Selanjutnya
+
+- **Jalankan Visualisasi**: Coba jalankan masing-masing kode di atas untuk melihat hasil visualisasi.
+- **Analisis Temuan**: Gunakan visualisasi ini untuk menjawab pertanyaan bisnis dan memperoleh insight yang bermanfaat dari data.
+
+Jika ada visualisasi lain yang ingin Anda tambahkan atau Anda memiliki pertanyaan lain, beri tahu saya!
+
+ERrror pada bagian korelasi
+Error tersebut terjadi karena fungsi `day_df.corr()` mencoba menghitung korelasi antara kolom-kolom dataset Anda, tetapi terdapat kolom dengan tipe data non-numerik (seperti string atau tanggal) yang tidak dapat dikonversi menjadi tipe data `float`. Oleh karena itu, heatmap korelasi hanya bisa dibuat untuk kolom-kolom yang berisi data numerik.
+
+### Cara Memperbaiki Error
+
+1. **Pilih Kolom Numerik Saja**: Sebelum membuat heatmap korelasi, pilih hanya kolom-kolom numerik dari dataset.
+
+2. **Gunakan Parameter `select_dtypes`**: Anda bisa menggunakan metode `.select_dtypes()` untuk memilih hanya kolom dengan tipe data numerik.
+
+### Kode yang Diperbaiki
+
+Berikut adalah versi kode yang sudah diperbaiki untuk hanya memilih kolom numerik dan menghindari error:
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Memilih hanya kolom numerik dari day_df
+numeric_cols = day_df.select_dtypes(include='number')
+
+# Heatmap korelasi untuk kolom numerik dalam day_df
+plt.figure(figsize=(10, 8))
+sns.heatmap(numeric_cols.corr(), annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Matriks Korelasi Fitur Numerik dalam day_df')
+plt.show()
+```
+
+### Penjelasan
+
+- **`select_dtypes(include='number')`**: Memilih hanya kolom dengan tipe data numerik dari dataframe `day_df`.
+- **`numeric_cols.corr()`**: Menghitung korelasi hanya untuk kolom numerik, sehingga tidak ada error konversi tipe data.
